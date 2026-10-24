@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Online Food Ordering</title>
+    <link rel="stylesheet" href="case- 8.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">🍔 Foodie</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#offers">Offers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="cart" onclick="showCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <div class="hero-text">
+            <h1>Delicious Food,<br>
+                <span>Delivered Fresh!</span>
+            </h1>
+
+            <p>
+                Discover tasty meals made with love.
+                Order your favourite food online and
+                enjoy deliciousness at your doorstep.
+            </p>
+
+            <a href="#menu" class="btn">Order Now →</a>
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85"
+            alt="Freshly baked pizza">
+    </div>
+
+    <!-- Food Menu -->
+    <section id="menu">
+        <h2 class="section-title">Our Delicious Menu 🍽️</h2>
+        <p class="subtitle">
+            Fresh ingredients. Amazing taste. Happy meals!
+        </p>
+
+        <div class="categories">
+            <button class="category-btn active"
+                onclick="filterFood('All', this)">All</button>
+
+            <button class="category-btn"
+                onclick="filterFood('Burger', this)">🍔 Burgers</button>
+
+            <button class="category-btn"
+                onclick="filterFood('Pizza', this)">🍕 Pizza</button>
+
+            <button class="category-btn"
+                onclick="filterFood('Indian', this)">🍛 Indian</button>
+
+            <button class="category-btn"
+                onclick="filterFood('Dessert', this)">🍰 Desserts</button>
+        </div>
+
+        <div class="food-container">
+
+            <!-- Food 1 -->
+            <div class="food-card" data-category="Burger">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+                     alt="Cheese burger">
+
+                <div class="food-info">
+                    <h3>Cheese Burger</h3>
+                    <p>Juicy burger with cheese and fresh vegetables.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹149</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Cheese Burger',149)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 2 -->
+            <div class="food-card" data-category="Pizza">
+                <img src="https://images.unsplash.com/photo- pizza"
+                     alt="Pizza"
+                     onerror="this.src='https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=600&q=80'">
+
+                <div class="food-info">
+                    <h3>Margherita Pizza</h3>
+                    <p>Classic pizza topped with cheese and herbs.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹249</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Margherita Pizza',249)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 3 -->
+            <div class="food-card" data-category="Indian">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80"
+                     alt="Indian biryani">
+
+                <div class="food-info">
+                    <h3>Chicken Biryani</h3>
+                    <p>Flavourful rice with aromatic Indian spices.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹199</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Chicken Biryani',199)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 4 -->
+            <div class="food-card" data-category="Burger">
+                <img src="bugger.png"
+                     alt="Double burger">
+
+                <div class="food-info">
+                    <h3>Double Burger</h3>
+                    <p>A delicious double-layer burger for big appetites.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹199</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Double Burger',199)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 5 -->
+            <div class="food-card" data-category="Pizza">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+                     alt="Vegetable pizza">
+
+                <div class="food-info">
+                    <h3>Veggie Pizza</h3>
+                    <p>Loaded with vegetables, cheese and tasty sauce.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹219</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Veggie Pizza',219)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 6 -->
+            <div class="food-card" data-category="Indian">
+                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80"
+                     alt="Indian curry meal">
+
+                <div class="food-info">
+                    <h3>Indian Thali</h3>
+                    <p>A comforting Indian meal with rich flavours.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹179</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Indian Thali',179)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 7 -->
+            <div class="food-card" data-category="Dessert">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+                     alt="Chocolate cake">
+
+                <div class="food-info">
+                    <h3>Chocolate Cake</h3>
+                    <p>Soft chocolate cake for your sweet cravings.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹99</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Chocolate Cake',99)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food 8 -->
+            <div class="food-card" data-category="Dessert">
+                <img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=600&q=80"
+                     alt="Ice cream dessert">
+
+                <div class="food-info">
+                    <h3>Ice Cream</h3>
+                    <p>A creamy and refreshing dessert to finish your meal.</p>
+
+                    <div class="food-bottom">
+                        <span class="price">₹79</span>
+                        <button class="add-btn"
+                            onclick="addToCart('Ice Cream',79)">
+                            + Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p id="cart-message" aria-live="polite"></p>
+    </section>
+
+    <!-- Special Offer -->
+    <div class="offer" id="offers">
+        <h2>🎉 Special Foodie Offer!</h2>
+        <p>Enjoy a delicious meal with your family and friends.</p>
+        <a href="#menu" class="btn">Explore Our Menu</a>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h2>🍔 Foodie</h2>
+        <p>Your favourite food, delivered with love.</p>
+        <p>Contact: hello@foodie.example</p>
+        <p>© 2026 Foodie. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for buttons and cart -->
+    <script>
+        let cart = [];
+        let cartCount = 0;
+        let total = 0;
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            cartCount++;
+            total += price;
+
+            document.getElementById("cart-count").textContent =
+                cartCount;
+
+            document.getElementById("cart-message").textContent =
+                name + " added to cart! Total: ₹" + total;
+        }
+
+        function showCart() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Add some delicious food!");
+                return;
+            }
+
+            let items = cart.map(function(item) {
+                return item.name + " - ₹" + item.price;
+            }).join("\n");
+
+            alert("YOUR FOOD CART\n\n" + items +
+                "\n\nTotal: ₹" + total +
+                "\n\nThis is a demo cart. Online checkout is not connected.");
+        }
+
+        function filterFood(category, button) {
+            const cards = document.querySelectorAll(".food-card");
+            const buttons = document.querySelectorAll(".category-btn");
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            cards.forEach(function(card) {
+                if (category === "All" ||
+                    card.dataset.category === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

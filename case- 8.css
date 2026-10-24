@@ -1,0 +1,290 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fffaf3;
+            color: #292929;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px #00000010;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #f15a24;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f15a24;
+        }
+
+        .cart {
+            background: #f15a24;
+            color: white;
+            padding: 11px 17px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .hero {
+            min-height: 420px;
+            padding: 65px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            background: linear-gradient(120deg, #fff0d9, #ffe0b5);
+        }
+
+        .hero-text {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f15a24;
+        }
+
+        .hero p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f15a24;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #cf4214;
+            transform: translateY(-2px);
+        }
+
+        .hero img {
+            width: 48%;
+            max-width: 520px;
+            border-radius: 25px;
+            object-fit: cover;
+            box-shadow: 0 12px 30px #9a5c2730;
+        }
+
+        section {
+            padding: 55px 7%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .category-btn {
+            padding: 11px 22px;
+            background: white;
+            border: 1px solid #f15a24;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #f15a24;
+            color: white;
+        }
+
+        .food-container {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            text-align: left;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px #0000000d;
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px #00000015;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 18px;
+        }
+
+        .food-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .food-info p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .food-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price {
+            color: #f15a24;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            border: none;
+            padding: 10px 13px;
+            border-radius: 6px;
+            background: #f15a24;
+            color: white;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #cf4214;
+        }
+
+        .offer {
+            background: #253d2d;
+            color: white;
+            border-radius: 18px;
+            margin: 10px 7% 55px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .offer h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .offer p {
+            margin-bottom: 22px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 28px 15px;
+            line-height: 1.8;
+        }
+
+        #cart-message {
+            margin-top: 20px;
+            color: #253d2d;
+            font-weight: bold;
+        }
+
+        @media (max-width: 760px) {
+            header {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 45px 6%;
+            }
+
+            .hero img {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            section {
+                padding: 40px 5%;
+            }
+
+            .offer {
+                margin: 0 5% 40px;
+            }
+        }

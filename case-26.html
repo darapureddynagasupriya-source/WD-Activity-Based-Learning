@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTechFest 2026 | College Festival</title>
+<link rel="stylesheet" href="college fest.css">
+</head>
+<body>
+<header>
+    <div class="logo">✦BTechFest 2026</div>
+    <nav>
+        <button onclick="goTo('home')">Home</button>
+        <button onclick="goTo('categories')">Events</button>
+        <button onclick="goTo('schedule')">Schedule</button>
+        <button onclick="goTo('coordinators')">Coordinators</button>
+        <button onclick="goTo('rules')">Rules</button>
+        <button onclick="goTo('register')">Register</button>
+    </nav>
+</header>
+<!-- HERO SECTION -->
+<div class="hero" id="home">
+    <div class="hero-content">
+        <p>★ NRI COLLEGE FESTIVAL ★</p>
+        <h1>BTECH<span>FEST</span> 2026</h1>
+        <h2>Where Ideas Meet Inspiration</h2>
+        <p>📅 15–17 November 2026 | 📍 College Campus</p>
+        <p>
+            Experience technology, music, dance, innovation,
+            competitions and unforgettable memories!
+        </p>
+        <div class="hero-actions">
+            <button class="primary-btn"
+                    onclick="goTo('register')">
+                Register Now →
+            </button>
+
+            <button class="outline-btn"
+                    onclick="goTo('promo')">
+                Watch Promo ▶
+            </button>
+        </div>
+    </div>
+    <div class="video-box" id="promo">
+        <h3>🎬 Festival Promo Video</h3>
+        <!-- Replace this video URL with your own festival video -->
+        <video controls poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+        <small>Demo video —  My college fest video.</small>
+    </div>
+</div>
+<!-- ABOUT -->
+<section class="about" id="about">
+    <img src="nri college.png" alt="College campus">
+
+    <div>
+        <h2>About BTechFest 2026</h2>
+        <p>
+            TechFest is a three-day college festival that brings
+            together students to explore creativity, technical skills,
+            teamwork and talent.
+        </p>
+        <p>
+            Participate in coding challenges, robotics, dance battles,
+            music shows, photography contests and expert-led workshops.
+            Meet new people, learn new skills and celebrate campus life.
+        </p>
+        <div class="stats">
+            <div>1000+<br><small>Participants</small></div>
+            <div>25+<br><small>Events</small></div>
+            <div>10+<br><small>Workshops</small></div>
+        </div>
+    </div>
+</section>
+<!-- CATEGORIES -->
+<section id="categories">
+    <div class="section-title">
+        <h2>Event Categories</h2>
+        <p>Choose your interest and discover your talent!</p>
+    </div>
+    <div class="categories">
+        <div class="category technical">
+            <h3>💻 Technical Events</h3>
+            <p>Coding, hackathons, robotics, paper presentations and project expo.</p>
+            <button class="outline-btn" onclick="showCategory('technical')">
+                View Events
+            </button>
+        </div>
+        <div class="category cultural">
+            <h3>🎭 Cultural Events</h3>
+            <p>Dance, singing, drama, fashion shows and creative performances.</p>
+            <button class="outline-btn" onclick="showCategory('cultural')">
+                View Events
+            </button>
+        </div>
+        <div class="category workshop">
+            <h3>🛠️ Workshops</h3>
+            <p>AI, web development, robotics, design and career guidance.</p>
+            <button class="outline-btn" onclick="showCategory('workshop')">
+                View Events
+            </button>
+        </div>
+        <div class="category competition">
+            <h3>🏆 Competitions</h3>
+            <p>Quiz, debates, gaming, photography and treasure hunt.</p>
+            <button class="outline-btn" onclick="showCategory('competition')">
+                View Events
+            </button>
+        </div>
+    </div>
+</section>
+<!-- FEATURED EVENTS -->
+<section id="events" style="background:white;">
+    <div class="section-title">
+        <h2>Featured Events</h2>
+        <p>Explore the highlights of our college festival.</p>
+    </div>
+    <div class="events-grid" id="eventCards">
+        <div class="event-card" data-category="technical">
+            <img src="h.png" alt="Technology and electronics">
+            <div class="event-info">
+                <h3>Hackathon 2026</h3>
+                <p>📅 15 Nov | 📍 Computer Lab</p>
+                <p>Build creative technology solutions with your team.</p>
+                <p><b>Eligibility:</b> All college students</p>
+                <button class="primary-btn" onclick="chooseEvent('Hackathon 2026')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="cultural">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=80" alt="Live music performance">
+            <div class="event-info">
+                <h3>Dance Competition</h3>
+                <p>📅 16 Nov | 📍 Open Air Stage</p>
+                <p>Show your moves in solo or group performances.</p>
+                <p><b>Eligibility:</b> Solo and group</p>
+                <button class="primary-btn" onclick="chooseEvent('Dance Competition')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="workshop">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=700&q=80" alt="Robotics workshop">
+            <div class="event-info">
+                <h3>Robotics Workshop</h3>
+                <p>📅 16 Nov | 📍 Innovation Lab</p>
+                <p>Learn robotics concepts and hands-on design.</p>
+                <p><b>Eligibility:</b> Beginners welcome</p>
+                <button class="primary-btn" onclick="chooseEvent('Robotics Workshop')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="cultural">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80" alt="Singer on stage">
+            <div class="event-info">
+                <h3>Singing Competition</h3>
+                <p>📅 17 Nov | 📍 Main Auditorium</p>
+                <p>Celebrate your voice with a live audience.</p>
+                <p><b>Eligibility:</b> Solo or duet</p>
+                <button class="primary-btn" onclick="chooseEvent('Singing Competition')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="technical">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80" alt="Laptop and coding">
+            <div class="event-info">
+                <h3>Code Sprint</h3>
+                <p>📅 15 Nov | 📍 Lab 2</p>
+                <p>Solve programming challenges against the clock.</p>
+                <p><b>Eligibility:</b> Individual participation</p>
+                <button class="primary-btn" onclick="chooseEvent('Code Sprint')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="competition">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80" alt="Student working on a computer">
+            <div class="event-info">
+                <h3>Tech Quiz</h3>
+                <p>📅 16 Nov | 📍 Seminar Hall</p>
+                <p>Test your knowledge of science and technology.</p>
+                <p><b>Eligibility:</b> Teams of two</p>
+                <button class="primary-btn" onclick="chooseEvent('Tech Quiz')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="workshop">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80" alt="Digital learning">
+            <div class="event-info">
+                <h3>Web Design Workshop</h3>
+                <p>📅 17 Nov | 📍 Computer Lab</p>
+                <p>Explore HTML, CSS and responsive web design.</p>
+                <p><b>Eligibility:</b> Open to beginners</p>
+                <button class="primary-btn" onclick="chooseEvent('Web Design Workshop')">Register Now</button>
+            </div>
+        </div>
+        <div class="event-card" data-category="competition">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80" alt="Gaming setup">
+            <div class="event-info">
+                <h3>Gaming Challenge</h3>
+                <p>📅 17 Nov | 📍 Student Activity Hall</p>
+                <p>Compete fairly and represent your team.</p>
+                <p><b>Eligibility:</b> Registered participants</p>
+                <button class="primary-btn" onclick="chooseEvent('Gaming Challenge')">Register Now</button>
+            </div>
+        </div>
+    </div>
+    <p id="filterMessage" style="text-align:center;margin-top:20px;"></p>
+    <div style="text-align:center;margin-top:20px;">
+        <button class="primary-btn" onclick="showCategory('all')">Show All Events</button>
+    </div>
+</section>
+<!-- SCHEDULE AND COORDINATORS -->
+<section>
+    <div class="details">
+        <div id="schedule">
+            <h2>📅 Event Schedule</h2>
+            <p>Demo timetable — confirm final timings with the fest team.</p>
+            <br>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                </tr>
+                <tr>
+                    <td>15 Nov</td>
+                    <td>Inauguration</td>
+                    <td>9:00 AM</td>
+                    <td>Main Hall</td>
+                </tr>
+                <tr>
+                    <td>15 Nov</td>
+                    <td>Hackathon</td>
+                    <td>10:00 AM</td>
+                    <td>Lab 1</td>
+                </tr>
+                <tr>
+                    <td>16 Nov</td>
+                    <td>Dance Competition</td>
+                    <td>2:00 PM</td>
+                    <td>Open Stage</td>
+                </tr>
+                <tr>
+                    <td>16 Nov</td>
+                    <td>Robotics Workshop</td>
+                    <td>11:00 AM</td>
+                    <td>Innovation Lab</td>
+                </tr>
+                <tr>
+                    <td>17 Nov</td>
+                    <td>Singing Competition</td>
+                    <td>10:00 AM</td>
+                    <td>Auditorium</td>
+                </tr>
+                <tr>
+                    <td>17 Nov</td>
+                    <td>Prize Distribution</td>
+                    <td>4:00 PM</td>
+                    <td>Main Hall</td>
+                </tr>
+            </table>
+            <br>
+            <button class="primary-btn" onclick="window.print()">Print Schedule</button>
+        </div>
+        <div id="coordinators">
+            <h2>👥 Event Coordinators</h2>
+            <p>Contact the relevant coordinator for event details.</p>
+            <br>
+            <div class="coordinator-grid">
+                <div class="coordinator">
+                    <h3>Ananya Sharma</h3>
+                    <p>Technical Events Coordinator</p>
+                    <p>Email: tech@example.com</p>
+                    <button class="primary-btn" onclick="contactCoordinator('tech@example.com')">Contact</button>
+                </div>
+                <div class="coordinator">
+                    <h3>Rohan Mehta</h3>
+                    <p>Cultural Events Coordinator</p>
+                    <p>Email: culture@example.com</p>
+                    <button class="primary-btn" onclick="contactCoordinator('culture@example.com')">Contact</button>
+                </div>
+                <div class="coordinator">
+                    <h3>Sneha Iyer</h3>
+                    <p>Workshop Coordinator</p>
+                    <p>Email: workshops@example.com</p>
+                    <button class="primary-btn" onclick="contactCoordinator('workshops@example.com')">Contact</button>
+                </div>
+                <div class="coordinator">
+                    <h3>Karan Singh</h3>
+                    <p>Competition Coordinator</p>
+                    <p>Email: contests@example.com</p>
+                    <button class="primary-btn" onclick="contactCoordinator('contests@example.com')">Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- RULES AND REGISTRATION -->
+<section class="rules-registration">
+    <div class="rules" id="rules">
+        <h2>📋 Rules & Guidelines</h2>
+        <ul>
+            <li>Carry a valid college ID card.</li>
+            <li>Complete registration before the event deadline.</li>
+            <li>Participants must follow the event coordinator's instructions.</li>
+            <li>Maintain discipline and respect all participants.</li>
+            <li>Plagiarism and unfair practices are prohibited.</li>
+            <li>Arrive at the venue at least 15 minutes early.</li>
+            <li>Team size and equipment rules depend on the event.</li>
+            <li>The organizers' published decisions apply to event disputes.</li>
+        </ul>
+        <p>Read the individual event guidelines before participating.</p>
+        <button class="primary-btn" onclick="alert('Please contact the fest committee for the official rulebook.')">
+            Full Rulebook
+        </button>
+    </div>
+    <div class="registration" id="register">
+        <h2>📝 Festival Registration</h2>
+        <p>Fill in your details to submit your registration request.</p>
+        <form id="registrationForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="college" placeholder="College Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="tel" id="phone" placeholder="Phone Number"
+                   pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+            <select id="event" required>
+                <option value="">Select Event</option>
+                <option>Hackathon 2026</option>
+                <option>Dance Competition</option>
+                <option>Robotics Workshop</option>
+                <option>Singing Competition</option>
+                <option>Code Sprint</option>
+                <option>Tech Quiz</option>
+                <option>Web Design Workshop</option>
+                <option>Gaming Challenge</option>
+                <option>Multiple Events</option>
+            </select>
+            <textarea id="message" placeholder="Additional information (optional)" rows="3"></textarea>
+            <label>
+                <input type="checkbox" id="agree" required style="width:auto;">
+                I agree to follow the fest rules.
+            </label>
+            <button type="submit" class="primary-btn">
+                Submit Registration
+            </button>
+        </form>
+        <p id="result" role="status" aria-live="polite"></p>
+    </div>
+</section
+<footer id="contact">
+    <h2>✦ BTechFest 2026</h2>
+    <p>Learn | Perform | Celebrate</p>
+    <p>Home | Events | Schedule | Rules | Register</p>
+    <p>Contact: fest@example.com</p>
+    <p>© 2026 TechFest College Festival. All rights reserved.</p>
+</footer>
+</body>
+</html>
