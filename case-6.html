@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEase | Online Shopping Website</title>
+</head>
+<link rel="stylesheet" href="case-6.css">
+<body>
+<!-- NAVIGATION BAR -->
+<header>
+    <div class="logo">🛍 ShopEase</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#offers">Offers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-btn" onclick="goToCart()">
+        🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+</header>
+<!-- HOME -->
+<div class="hero" id="home">
+    <div>
+        <h1>Welcome to ShopEase!</h1>
+        <p>
+            Discover amazing products at unbeatable prices.<br>
+            Fashion, Electronics, Beauty and much more!<br>
+            Enjoy exciting discounts and special offers.
+        </p>
+        <button class="yellow-btn" onclick="goToProducts()">
+            Shop Now →
+        </button>
+    </div>
+</div>
+<!-- SEARCH BAR -->
+<div class="search-section">
+    <input type="text" id="searchInput"
+        placeholder="Search mobiles, shoes, laptops..."
+        oninput="searchProducts()">
+
+    <button onclick="searchProducts()">🔍 Search</button>
+</div>
+<!-- CATEGORIES -->
+<section id="categories">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="category-grid">
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" alt="Mobile">
+            <h3>Mobiles</h3>
+            <button onclick="filterProducts('Mobiles')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400" alt="Laptop">
+            <h3>Laptops</h3>
+            <button onclick="filterProducts('Laptops')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" alt="Fashion">
+            <h3>Fashion</h3>
+            <button onclick="filterProducts('Fashion')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="Shoes">
+            <h3>Shoes</h3>
+            <button onclick="filterProducts('Shoes')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Watches">
+            <h3>Watches</h3>
+            <button onclick="filterProducts('Watches')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400" alt="Beauty">
+            <h3>Beauty</h3>
+            <button onclick="filterProducts('Beauty')">Explore</button>
+        </div>
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400" alt="Home">
+            <h3>Home</h3>
+            <button onclick="filterProducts('Home')">Explore</button>
+        </div>
+    </div>
+</section>
+<!-- OFFERS -->
+<section id="offers">
+    <div class="offer-banner">
+        <h2>🔥 Mega Shopping Sale!</h2>
+        <p>
+            Enjoy exciting discounts on your favourite items.<br>
+            Limited-time offers on electronics, fashion and more!
+        </p>
+        <button class="yellow-btn" onclick="showOffers()">
+            View Special Offers
+        </button>
+    </div>
+</section>
+<!-- PRODUCTS -->
+<section id="products">
+    <h2 class="section-title">Our Popular Products</h2>
+    <div class="controls">
+        <button onclick="filterProducts('All')">All Products</button>
+        <button onclick="filterProducts('Mobiles')">Mobiles</button>
+        <button onclick="filterProducts('Fashion')">Fashion</button>
+        <button onclick="filterProducts('Laptops')">Laptops</button>
+        <button onclick="filterProducts('Shoes')">Shoes</button>
+        <select id="sortSelect" onchange="displayProducts()">
+            <option value="default">Sort Products</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="rating">Highest Rating</option>
+        </select>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+</section>
+<!-- SHOPPING CART -->
+<section class="cart-section" id="cart">
+    <h2 class="section-title">🛒 Your Shopping Cart</h2>
+    <div class="cart-box">
+        <div id="cartItems">
+            <p>Your cart is empty.</p>
+        </div>
+
+        <h3 class="cart-total">
+            Total: ₹<span id="cartTotal">0</span>
+        </h3>
+
+        <button class="checkout-btn" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+    </div>
+</section>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p>📧 Email: support@shopease.example</p>
+    <p>📞 Customer Support: Demo Shopping Website</p>
+    <p>🚚 Fast Delivery | Secure Shopping | Easy Returns</p>
+    <p>Thank you for visiting ShopEase!</p>
+</section>
+
+<footer>
+    <h3>🛍 ShopEase Online Shopping</h3>
+    <p>Fashion | Electronics | Beauty | Home Essentials</p>
+    <p>© 2026 ShopEase. Educational Project.</p>
+</footer>
+<!-- PRODUCT DETAILS POPUP -->
+<div class="modal" id="productModal">
+    <div class="modal-box" id="modalContent"></div>
+</div>
+<script>
+// PRODUCT DATA
+// Sample prices and discounts for demonstration.
+const products = [
+    {
+        id: 1,
+        name: "Premium Smartphone",
+        category: "Mobiles",
+        price: 19999,
+        oldPrice: 24999,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+        description: "Modern smartphone with excellent camera, powerful performance and long battery life."
+    },
+    {
+        id: 2,
+        name: "Android Mobile",
+        category: "Mobiles",
+        price: 14999,
+        oldPrice: 18999,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500",
+        description: "Stylish mobile phone with smooth display and reliable everyday performance."
+    },
+    {
+        id: 3,
+        name: "Business Laptop",
+        category: "Laptops",
+        price: 45999,
+        oldPrice: 55999,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500",
+        description: "Lightweight laptop for students, coding, office work and online classes."
+    },
+    {
+        id: 4,
+        name: "Student Laptop",
+        category: "Laptops",
+        price: 38999,
+        oldPrice: 44999,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500",
+        description: "Portable laptop with fast processing and a beautiful display."
+    },
+    {
+        id: 5,
+        name: "Fashion Jacket",
+        category: "Fashion",
+        price: 1499,
+        oldPrice: 2499,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500",
+        description: "Trendy jacket with comfortable fabric and stylish design."
+    },
+    {
+        id: 6,
+        name: "Casual T-Shirt",
+        category: "Fashion",
+        price: 599,
+        oldPrice: 999,
+        rating: 4.3,
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",
+        description: "Soft cotton T-shirt suitable for daily casual wear."
+    },
+    {
+        id: 7,
+        name: "Classic Blue Jeans",
+        category: "Fashion",
+        price: 1199,
+        oldPrice: 1899,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500",
+        description: "Comfortable denim jeans with a timeless casual look."
+    },
+    {
+        id: 8,
+        name: "Running Shoes",
+        category: "Shoes",
+        price: 2499,
+        oldPrice: 3499,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
+        description: "Lightweight sports shoes with soft cushioning for daily activities."
+    },
+    {
+        id: 9,
+        name: "White Sneakers",
+        category: "Shoes",
+        price: 1799,
+        oldPrice: 2599,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500",
+        description: "Fashionable sneakers for college, travel and casual outings."
+    },
+    {
+        id: 10,
+        name: "Smart Watch",
+        category: "Watches",
+        price: 2999,
+        oldPrice: 4499,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
+        description: "Elegant watch with modern design and comfortable strap."
+    },
+    {
+        id: 11,
+        name: "Luxury Wrist Watch",
+        category: "Watches",
+        price: 3999,
+        oldPrice: 5499,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=500",
+        description: "Premium wristwatch for formal and casual occasions."
+    },
+    {
+        id: 12,
+        name: "Beauty Makeup Kit",
+        category: "Beauty",
+        price: 1299,
+        oldPrice: 1999,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",
+        description: "Collection of makeup essentials for everyday beauty routines."
+    },
+    {
+        id: 13,
+        name: "Perfume Collection",
+        category: "Beauty",
+        price: 899,
+        oldPrice: 1499,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500",
+        description: "Refreshing fragrance in a stylish perfume bottle."
+    },
+    {
+        id: 14,
+        name: "Wireless Headphones",
+        category: "Electronics",
+        price: 1999,
+        oldPrice: 2999,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+        description: "Comfortable headphones with clear sound for music and calls."
+    },
+    {
+        id: 15,
+        name: "Digital Camera",
+        category: "Electronics",
+        price: 24999,
+        oldPrice: 29999,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500",
+        description: "High-quality camera for photography and creative projects."
+    },
+    {
+        id: 16,
+        name: "Bluetooth Speaker",
+        category: "Electronics",
+        price: 1599,
+        oldPrice: 2299,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
+        description: "Portable wireless speaker with rich and powerful sound."
+    },
+    {
+        id: 17,
+        name: "Comfortable Sofa",
+        category: "Home",
+        price: 15999,
+        oldPrice: 20999,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500",
+        description: "Comfortable sofa with a modern design for your living room."
+    },
+    {
+        id: 18,
+        name: "Study Table",
+        category: "Home",
+        price: 4999,
+        oldPrice: 6999,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=500",
+        description: "Spacious desk suitable for studying, working and computer use."
+    },
+    {
+        id: 19,
+        name: "Travel Backpack",
+        category: "Fashion",
+        price: 1299,
+        oldPrice: 1999,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
+        description: "Durable backpack with multiple compartments for daily travel."
+    },
+    {
+        id: 20,
+        name: "Stylish Sunglasses",
+        category: "Fashion",
+        price: 799,
+        oldPrice: 1299,
+        rating: 4.3,
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500",
+        description: "Modern sunglasses with a lightweight and comfortable frame."
+    }
+];
+
+let cart = [];
+let selectedCategory = "All";
+let offersOnly = false;
+
+// FORMAT PRICE
+function formatPrice(amount) {
+    return amount.toLocaleString("en-IN");
+}
+
+// DISPLAY PRODUCTS
+function displayProducts() {
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    let filtered = products.filter(product => {
+        const matchesCategory =
+            selectedCategory === "All" ||
+            product.category === selectedCategory;
+
+        const matchesSearch =
+            product.name.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search) ||
+            product.description.toLowerCase().includes(search);
+
+        const discount =
+            (product.oldPrice - product.price) /
+            product.oldPrice * 100;
+
+        const matchesOffers = !offersOnly || discount >= 30;
+
+        return matchesCategory && matchesSearch && matchesOffers;
+    });
+
+    const sort = document.getElementById("sortSelect").value;
+
+    if (sort === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+    } else if (sort === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+    } else if (sort === "rating") {
+        filtered.sort((a, b) => b.rating - a.rating);
+    }
+
+    grid.innerHTML = "";
+
+    if (filtered.length === 0) {
+        grid.innerHTML =
+            "<p>No products found. Try another search.</p>";
+        return;
+    }
+
+    filtered.forEach(product => {
+        const discount = Math.round(
+            (product.oldPrice - product.price) /
+            product.oldPrice * 100
+        );
+
+        const card = document.createElement("div");
+        card.className = "product";
+
+        card.innerHTML = `
+            <span class="discount">${discount}% OFF</span>
+
+            <img src="${product.image}"
+                 alt="${product.name}"
+                 loading="lazy">
+
+            <div class="product-content">
+                <h3>${product.name}</h3>
+
+                <p class="description">${product.description}</p>
+
+                <p class="rating">
+                    ⭐ ${product.rating} / 5
+                </p>
+
+                <p>
+                    <span class="price">
+                        ₹${formatPrice(product.price)}
+                    </span>
+                    <span class="old-price">
+                        ₹${formatPrice(product.oldPrice)}
+                    </span>
+                </p>
+
+                <div class="product-buttons">
+                    <button class="add-btn"
+                        onclick="addToCart(${product.id})">
+                        🛒 Add to Cart
+                    </button>
+
+                    <button class="buy-btn"
+                        onclick="buyNow(${product.id})">
+                        Buy Now
+                    </button>
+
+                    <button class="details-btn"
+                        onclick="viewDetails(${product.id})">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+// FILTER CATEGORY
+function filterProducts(category) {
+    selectedCategory = category;
+    offersOnly = false;
+
+    document.getElementById("searchInput").value = "";
+
+    displayProducts();
+    goToProducts();
+}
+
+// SEARCH PRODUCTS
+function searchProducts() {
+    displayProducts();
+    goToProducts();
+}
+
+// SPECIAL OFFERS
+function showOffers() {
+    selectedCategory = "All";
+    offersOnly = true;
+
+    document.getElementById("searchInput").value = "";
+
+    displayProducts();
+    goToProducts();
+}
+
+// ADD PRODUCT TO CART
+function addToCart(id) {
+    const product = products.find(p => p.id === id);
+
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+    updateCart();
+    alert(product.name + " added to your cart!");
+}
+
+// UPDATE CART
+function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+    let count = 0;
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    }
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+
+        div.innerHTML = `
+            <div>
+                <strong>${item.name}</strong>
+                <p>
+                    ₹${formatPrice(item.price)}
+                    × ${item.quantity}
+                </p>
+            </div>
+
+            <div>
+                <button onclick="changeQuantity(${item.id}, -1)">
+                    −
+                </button>
+
+                <button onclick="changeQuantity(${item.id}, 1)">
+                    +
+                </button>
+
+                <button class="remove-btn"
+                    onclick="removeFromCart(${item.id})">
+                    Remove
+                </button>
+            </div>
+        `;
+
+        cartItems.appendChild(div);
+    });
+
+    document.getElementById("cartTotal").textContent =
+        formatPrice(total);
+
+    document.getElementById("cartCount").textContent = count;
+}
+
+// CHANGE QUANTITY
+function changeQuantity(id, change) {
+    const item = cart.find(p => p.id === id);
+
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+        removeFromCart(id);
+    } else {
+        updateCart();
+    }
+}
+
+// REMOVE PRODUCT
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCart();
+}
+
+// BUY NOW
+function buyNow(id) {
+    addToCart(id);
+    closeModal();
+    goToCart();
+}
+
+// PRODUCT DETAILS
+function viewDetails(id) {
+    const product = products.find(p => p.id === id);
+
+    document.getElementById("modalContent").innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+
+        <h2>${product.name}</h2>
+
+        <p>${product.description}</p>
+
+        <p>Category: ${product.category}</p>
+
+        <p>⭐ Rating: ${product.rating} / 5</p>
+
+        <h2 style="color:green">
+            ₹${formatPrice(product.price)}
+        </h2>
+
+        <button class="add-btn"
+            onclick="addToCart(${product.id})">
+            Add to Cart
+        </button>
+
+        <button class="buy-btn"
+            onclick="buyNow(${product.id})">
+            Buy Now
+        </button>
+
+        <br>
+
+        <button class="close-btn" onclick="closeModal()">
+            Close
+        </button>
+    `;
+
+    document.getElementById("productModal").style.display = "flex";
+}
+
+// CLOSE DETAILS
+function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+}
+
+// CHECKOUT DEMO
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Add some products first!");
+        return;
+    }
+
+    alert(
+        "Thank you for shopping with ShopEase!\n\n" +
+        "This is a demonstration website.\n" +
+        "No real payment or order has been placed."
+    );
+}
+
+// NAVIGATION FUNCTIONS
+function goToCart() {
+    document.getElementById("cart").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function goToProducts() {
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+document.getElementById("productModal")
+    .addEventListener("click", function(event) {
+        if (event.target === this) {
+            closeModal();
+        }
+    });
+
+// FIRST LOAD
+displayProducts();
+updateCart();
+
+</script>
+
+</body>
+</html>
+
